@@ -1,17 +1,17 @@
 #!/bin/bash
 
-# CLIProxyAPI Linux Installer
-# Linux-specific script that installs, upgrades, and manages CLIProxyAPI
-# Downloads, installs, and upgrades CLIProxyAPI while preserving configuration
+# CLIProxyAPI-Wataa Linux Installer
+# Linux-specific script that installs, upgrades, and manages CLIProxyAPI-Wataa
+# Downloads, installs, and upgrades CLIProxyAPI-Wataa while preserving configuration
 
 set -euo pipefail
 
 # Configuration
 REPO_OWNER="rasutede"
-REPO_NAME="CLIProxyAPI-Wataa"
-INSTALL_DIR="$HOME/cliproxyapi"
+REPO_NAME="CLIProxyAPI-Wataa-Wataa"
+INSTALL_DIR="$HOME/CLIProxyAPI-Wataa"
 API_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest"
-SCRIPT_NAME="cliproxyapi-installer"
+SCRIPT_NAME="CLIProxyAPI-Wataa-installer"
 
 # Colors for output
 RED='\033[0;31m'
@@ -47,9 +47,9 @@ show_authentication_info() {
     echo
     echo -e "${YELLOW}🔐 IMPORTANT: Authentication Setup Required${NC}"
     echo
-    echo -e "${BLUE}CLIProxyAPI supports authentication for multiple providers:${NC}"
+    echo -e "${BLUE}CLIProxyAPI-Wataa supports authentication for multiple providers:${NC}"
     echo
-    echo -e "${GREEN}📚 Full Documentation:${NC} https://github.com/router-for-me/CLIProxyAPI"
+    echo -e "${GREEN}📚 Full Documentation:${NC} https://github.com/rasutede/CLIProxyAPI-Wataa"
     echo
     echo -e "${YELLOW}Authentication Commands:${NC}"
     echo
@@ -101,7 +101,7 @@ manage_documentation() {
     echo "========================"
 
     if ! is_installed; then
-        log_error "CLIProxyAPI is not installed. Install it first to manage documentation."
+        log_error "CLIProxyAPI-Wataa is not installed. Install it first to manage documentation."
         exit 1
     fi
 
@@ -225,7 +225,7 @@ show_api_key_setup() {
     echo
     echo -e "${YELLOW}🔑 IMPORTANT: API Keys Required Before First Run${NC}"
     echo
-    echo -e "${BLUE}Before starting CLIProxyAPI, you need to configure API keys in config.yaml:${NC}"
+    echo -e "${BLUE}Before starting CLIProxyAPI-Wataa, you need to configure API keys in config.yaml:${NC}"
     echo
     echo -e "${GREEN}1. Edit the configuration file:${NC}"
     echo -e "   ${CYAN}nano ${INSTALL_DIR}/config.yaml${NC}"
@@ -257,7 +257,7 @@ show_quick_start() {
     local install_dir="$1"
     echo
     echo -e "${GREEN}🚀 Quick Start Guide:${NC}"
-    echo -e "${BLUE}1. Navigate to CLIProxyAPI:${NC}"
+    echo -e "${BLUE}1. Navigate to CLIProxyAPI-Wataa:${NC}"
     echo -e "   ${CYAN}cd $install_dir${NC}"
     echo
     
@@ -290,23 +290,23 @@ show_quick_start() {
         echo -e "   ${CYAN}./cli-proxy-api${NC}"
         echo
         echo -e "${BLUE}5. Or run as a systemd service:${NC}"
-        echo -e "   ${CYAN}systemctl --user enable cliproxyapi.service${NC}"
-        echo -e "   ${CYAN}systemctl --user start cliproxyapi.service${NC}"
-        echo -e "   ${CYAN}systemctl --user status cliproxyapi.service${NC}"
+        echo -e "   ${CYAN}systemctl --user enable CLIProxyAPI-Wataa.service${NC}"
+        echo -e "   ${CYAN}systemctl --user start CLIProxyAPI-Wataa.service${NC}"
+        echo -e "   ${CYAN}systemctl --user status CLIProxyAPI-Wataa.service${NC}"
         echo
         echo -e "${BLUE}6. Read the full documentation:${NC}"
-        echo -e "   ${CYAN}https://github.com/router-for-me/CLIProxyAPI${NC}"
+        echo -e "   ${CYAN}https://github.com/rasutede/CLIProxyAPI-Wataa${NC}"
     else
         echo -e "${BLUE}3. Start the service:${NC}"
         echo -e "   ${CYAN}./cli-proxy-api${NC}"
         echo
         echo -e "${BLUE}4. Or run as a systemd service:${NC}"
-        echo -e "   ${CYAN}systemctl --user enable cliproxyapi.service${NC}"
-        echo -e "   ${CYAN}systemctl --user start cliproxyapi.service${NC}"
-        echo -e "   ${CYAN}systemctl --user status cliproxyapi.service${NC}"
+        echo -e "   ${CYAN}systemctl --user enable CLIProxyAPI-Wataa.service${NC}"
+        echo -e "   ${CYAN}systemctl --user start CLIProxyAPI-Wataa.service${NC}"
+        echo -e "   ${CYAN}systemctl --user status CLIProxyAPI-Wataa.service${NC}"
         echo
         echo -e "${BLUE}5. Read the full documentation:${NC}"
-        echo -e "   ${CYAN}https://github.com/router-for-me/CLIProxyAPI${NC}"
+        echo -e "   ${CYAN}https://github.com/rasutede/CLIProxyAPI-Wataa${NC}"
     fi
     echo
 }
@@ -381,7 +381,7 @@ extract_release_info() {
         exit 1
     fi
     
-    local expected_filename="CLIProxyAPI_${version}_${os_arch}"
+    local expected_filename="CLIProxyAPI-Wataa_${version}_${os_arch}"
     local download_url=""
     
     # Handle different file extensions
@@ -401,7 +401,7 @@ extract_release_info() {
     echo "${version}|${download_url}"
 }
 
-# Check if CLIProxyAPI is already installed
+# Check if CLIProxyAPI-Wataa is already installed
 is_installed() {
     [[ -f "${INSTALL_DIR}/version.txt" ]]
 }
@@ -459,21 +459,21 @@ restore_config() {
 
 # Check if systemd service is running
 is_service_running() {
-    systemctl --user is-active --quiet cliproxyapi.service 2>/dev/null
+    systemctl --user is-active --quiet CLIProxyAPI-Wataa.service 2>/dev/null
 }
 
-# Check if any CLIProxyAPI processes are running
-is_cliproxyapi_running() {
+# Check if any CLIProxyAPI-Wataa processes are running
+is_CLIProxyAPI-Wataa_running() {
     pgrep -f "cli-proxy-api" >/dev/null 2>&1
 }
 
-# Stop any running CLIProxyAPI processes
-stop_cliproxyapi_processes() {
+# Stop any running CLIProxyAPI-Wataa processes
+stop_CLIProxyAPI-Wataa_processes() {
     local pids
     pids=$(pgrep -f "cli-proxy-api" 2>/dev/null || true)
     
     if [[ -n "$pids" ]]; then
-        log_info "Stopping running CLIProxyAPI processes..."
+        log_info "Stopping running CLIProxyAPI-Wataa processes..."
         echo "$pids" | while read -r pid; do
             if [[ -n "$pid" ]]; then
                 kill "$pid" 2>/dev/null || true
@@ -498,17 +498,17 @@ stop_cliproxyapi_processes() {
             sleep 1
         fi
         
-        log_success "All CLIProxyAPI processes stopped"
+        log_success "All CLIProxyAPI-Wataa processes stopped"
     else
-        log_info "No CLIProxyAPI processes are running"
+        log_info "No CLIProxyAPI-Wataa processes are running"
     fi
 }
 
 # Stop systemd service if running
 stop_service() {
     if is_service_running; then
-        log_info "Stopping CLIProxyAPI service..."
-        systemctl --user stop cliproxyapi.service
+        log_info "Stopping CLIProxyAPI-Wataa service..."
+        systemctl --user stop CLIProxyAPI-Wataa.service
         log_success "Service stopped"
     else
         log_info "Service is not running"
@@ -517,38 +517,38 @@ stop_service() {
 
 # Start systemd service
 start_service() {
-    log_info "Starting CLIProxyAPI service..."
-    systemctl --user start cliproxyapi.service
+    log_info "Starting CLIProxyAPI-Wataa service..."
+    systemctl --user start CLIProxyAPI-Wataa.service
     
     # Wait a moment and check if it started successfully
     sleep 2
     if is_service_running; then
         log_success "Service started successfully"
     else
-        log_warning "Service may not have started properly. Check with: systemctl --user status cliproxyapi.service"
+        log_warning "Service may not have started properly. Check with: systemctl --user status CLIProxyAPI-Wataa.service"
     fi
 }
 
 # Restart systemd service
 restart_service() {
-    log_info "Restarting CLIProxyAPI service..."
-    systemctl --user restart cliproxyapi.service
+    log_info "Restarting CLIProxyAPI-Wataa service..."
+    systemctl --user restart CLIProxyAPI-Wataa.service
     
     # Wait a moment and check if it started successfully
     sleep 2
     if is_service_running; then
         log_success "Service restarted successfully"
     else
-        log_warning "Service may not have started properly. Check with: systemctl --user status cliproxyapi.service"
+        log_warning "Service may not have started properly. Check with: systemctl --user status CLIProxyAPI-Wataa.service"
     fi
 }
 
 # Create systemd service file
 create_systemd_service() {
     local install_dir="$1"
-    local service_file="${install_dir}/cliproxyapi.service"
+    local service_file="${install_dir}/CLIProxyAPI-Wataa.service"
     local systemd_dir="$HOME/.config/systemd/user"
-    local systemd_service_file="${systemd_dir}/cliproxyapi.service"
+    local systemd_service_file="${systemd_dir}/CLIProxyAPI-Wataa.service"
     
     log_info "Creating systemd service file..."
     
@@ -558,7 +558,7 @@ create_systemd_service() {
     # Create service file content with basic working configuration
     cat > "$service_file" << EOF
 [Unit]
-Description=CLIProxyAPI Service
+Description=CLIProxyAPI-Wataa Service
 After=network.target
 
 [Service]
@@ -582,9 +582,9 @@ EOF
     log_success "Systemd service file created: $service_file"
     log_success "Systemd service installed: $systemd_service_file"
     log_info "To enable and start the service:"
-    log_info "  systemctl --user enable cliproxyapi.service"
-    log_info "  systemctl --user start cliproxyapi.service"
-    log_info "  systemctl --user status cliproxyapi.service"
+    log_info "  systemctl --user enable CLIProxyAPI-Wataa.service"
+    log_info "  systemctl --user start CLIProxyAPI-Wataa.service"
+    log_info "  systemctl --user status CLIProxyAPI-Wataa.service"
 }
 
 # Copy example config if no existing config and setup main directory structure
@@ -721,22 +721,22 @@ make_executable() {
     local version_dir="$1"
 
     local binary
-    binary=$(find "$version_dir" -name "CLIProxyAPI" -o -name "cli-proxy-api" -type f | head -1)
+    binary=$(find "$version_dir" -name "CLIProxyAPI-Wataa" -o -name "cli-proxy-api" -type f | head -1)
     if [[ -n "$binary" ]]; then
         chmod +x "$binary"
-        log_success "Made CLIProxyAPI binary executable"
+        log_success "Made CLIProxyAPI-Wataa binary executable"
     fi
 }
 
 # Main installation function
-install_cliproxyapi() {
+install_CLIProxyAPI-Wataa() {
     local current_version
     current_version=$(get_current_version)
     local is_upgrade=false
     local service_was_running=false
     
     if [[ "$current_version" != "none" ]]; then
-        log_info "Current CLIProxyAPI version: $current_version"
+        log_info "Current CLIProxyAPI-Wataa version: $current_version"
         is_upgrade=true
         
         # Check if service is running before upgrade
@@ -745,7 +745,7 @@ install_cliproxyapi() {
             log_info "Service is currently running and will be restarted after upgrade"
         fi
     else
-        log_info "CLIProxyAPI not installed, performing fresh installation"
+        log_info "CLIProxyAPI-Wataa not installed, performing fresh installation"
     fi
     
     # Check dependencies
@@ -770,7 +770,7 @@ install_cliproxyapi() {
     
     # Check if already up to date
     if [[ "$is_upgrade" == true && "$current_version" == "$version" ]]; then
-        log_success "CLIProxyAPI is already up to date (version $version)"
+        log_success "CLIProxyAPI-Wataa is already up to date (version $version)"
         return
     fi
     
@@ -779,8 +779,8 @@ install_cliproxyapi() {
         if is_service_running; then
             stop_service
         fi
-        if is_cliproxyapi_running; then
-            stop_cliproxyapi_processes
+        if is_CLIProxyAPI-Wataa_running; then
+            stop_CLIProxyAPI-Wataa_processes
         fi
     fi
     
@@ -829,7 +829,7 @@ install_cliproxyapi() {
     
     # Success message
     if [[ "$is_upgrade" == true ]]; then
-        log_success "CLIProxyAPI upgraded from $current_version to $version!"
+        log_success "CLIProxyAPI-Wataa upgraded from $current_version to $version!"
         log_info "Installation directory: $INSTALL_DIR"
         
         if [[ "$service_was_running" == true ]]; then
@@ -837,7 +837,7 @@ install_cliproxyapi() {
         elif is_service_running; then
             log_info "Service is running"
         else
-            log_info "To start the service: systemctl --user start cliproxyapi.service"
+            log_info "To start the service: systemctl --user start CLIProxyAPI-Wataa.service"
         fi
         
         # Check if this is the first time setup (no existing config)
@@ -846,10 +846,10 @@ install_cliproxyapi() {
             show_quick_start "$INSTALL_DIR"
         else
             log_info "Your existing configuration has been preserved"
-            log_info "To use CLIProxyAPI: cd $INSTALL_DIR && ./cli-proxy-api --help"
+            log_info "To use CLIProxyAPI-Wataa: cd $INSTALL_DIR && ./cli-proxy-api --help"
         fi
     else
-        log_success "CLIProxyAPI $version installed successfully!"
+        log_success "CLIProxyAPI-Wataa $version installed successfully!"
         log_info "Installation directory: $INSTALL_DIR"
         
         # Show authentication information for first-time setup
@@ -863,7 +863,7 @@ show_status() {
     local current_version
     current_version=$(get_current_version)
     
-    echo "CLIProxyAPI Installation Status"
+    echo "CLIProxyAPI-Wataa Installation Status"
     echo "=============================="
     echo "Install Directory: $INSTALL_DIR"
     echo "Current Version: $current_version"
@@ -885,10 +885,10 @@ show_status() {
             echo "Executable: Missing"
         fi
         
-        if [[ -f "${INSTALL_DIR}/cliproxyapi.service" ]]; then
+        if [[ -f "${INSTALL_DIR}/CLIProxyAPI-Wataa.service" ]]; then
             echo "Systemd Service: Available"
-            echo "  To enable: systemctl --user enable cliproxyapi.service"
-            echo "  To start:  systemctl --user start cliproxyapi.service"
+            echo "  To enable: systemctl --user enable CLIProxyAPI-Wataa.service"
+            echo "  To start:  systemctl --user start CLIProxyAPI-Wataa.service"
         else
             echo "Systemd Service: Missing"
         fi
@@ -911,13 +911,13 @@ show_status() {
 }
 
 # Uninstall function
-uninstall_cliproxyapi() {
+uninstall_CLIProxyAPI-Wataa() {
     if [[ ! -d "$INSTALL_DIR" ]]; then
-        log_warning "CLIProxyAPI installation directory not found: $INSTALL_DIR"
+        log_warning "CLIProxyAPI-Wataa installation directory not found: $INSTALL_DIR"
         exit 0
     fi
     
-    log_info "CLIProxyAPI installation found at: $INSTALL_DIR"
+    log_info "CLIProxyAPI-Wataa installation found at: $INSTALL_DIR"
     
     # Show what will be removed
     echo
@@ -926,7 +926,7 @@ uninstall_cliproxyapi() {
     echo
     
     # Ask for confirmation
-    read -p "Are you sure you want to remove CLIProxyAPI? (y/N): " -n 1 -r
+    read -p "Are you sure you want to remove CLIProxyAPI-Wataa? (y/N): " -n 1 -r
     echo
     
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -935,10 +935,10 @@ uninstall_cliproxyapi() {
     fi
     
     # Remove installation directory
-    log_info "Removing CLIProxyAPI installation..."
+    log_info "Removing CLIProxyAPI-Wataa installation..."
     rm -rf "$INSTALL_DIR"
     
-    log_success "CLIProxyAPI has been uninstalled successfully"
+    log_success "CLIProxyAPI-Wataa has been uninstalled successfully"
 }
 
 # Cleanup function on exit
@@ -957,7 +957,7 @@ trap cleanup EXIT
 main() {
     case "${1:-install}" in
         "install"|"upgrade")
-            install_cliproxyapi
+            install_CLIProxyAPI-Wataa
             ;;
         "status")
             show_status
@@ -985,12 +985,12 @@ main() {
                     echo -e "${BLUE}Current API keys in config.yaml:${NC}"
                     grep -A 10 "^api-keys:" "${INSTALL_DIR}/config.yaml" | grep -v "^#" | head -10
                     echo
-                    echo -e "${BLUE}You can now start CLIProxyAPI:${NC}"
+                    echo -e "${BLUE}You can now start CLIProxyAPI-Wataa:${NC}"
                     echo -e "  ${CYAN}cd ${INSTALL_DIR}${NC}"
                     echo -e "  ${CYAN}./cli-proxy-api${NC}"
                     echo
                     echo -e "${BLUE}Or run as a service:${NC}"
-                    echo -e "  ${CYAN}systemctl --user start cliproxyapi.service${NC}"
+                    echo -e "  ${CYAN}systemctl --user start CLIProxyAPI-Wataa.service${NC}"
                 else
                     echo -e "❌ API Keys: ${RED}NOT CONFIGURED${NC}"
                     echo -e "❌ Status: ${RED}Not ready to run${NC}"
@@ -998,7 +998,7 @@ main() {
                     show_api_key_setup
                 fi
             else
-                log_error "CLIProxyAPI is not installed"
+                log_error "CLIProxyAPI-Wataa is not installed"
                 echo "Install it first with: $SCRIPT_NAME install"
             fi
             ;;
@@ -1020,26 +1020,26 @@ main() {
             manage_documentation
             ;;
         "uninstall")
-            uninstall_cliproxyapi
+            uninstall_CLIProxyAPI-Wataa
             ;;
         "-h"|"--help")
             cat << EOF
- CLIProxyAPI Linux Installer
+ CLIProxyAPI-Wataa Linux Installer
 
 Usage: $SCRIPT_NAME [COMMAND] [OPTIONS]
 
 Commands:
-  install, upgrade    Install or upgrade CLIProxyAPI (default)
+  install, upgrade    Install or upgrade CLIProxyAPI-Wataa (default)
   status             Show current installation status
   auth               Show authentication setup information
   check-config       Check configuration and API keys
   generate-key       Generate new API key and show it
   manage-docs        Manage documentation (update, organize, check consistency)
-  uninstall          Remove CLIProxyAPI completely
+  uninstall          Remove CLIProxyAPI-Wataa completely
   -h, --help         Show this help message
 
 Description:
-  This Linux-specific script installs, upgrades, or removes CLIProxyAPI.
+  This Linux-specific script installs, upgrades, or removes CLIProxyAPI-Wataa.
   It can be run from anywhere and automatically detects your Linux architecture.
 
   During upgrades, your config.yaml file is preserved automatically.
@@ -1052,7 +1052,7 @@ Features:
   - Systemd service file creation
   - Cleans up old versions (keeps latest 2)
 
-Installation Directory: ~/cliproxyapi/
+Installation Directory: ~/CLIProxyAPI-Wataa/
 
 Supported Platforms:
   - Linux: amd64, arm64

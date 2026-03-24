@@ -8,7 +8,7 @@ set -euo pipefail
 
 # Configuration
 REPO_OWNER="rasutede"
-REPO_NAME="CLIProxyAPI-Wataa-Wataa"
+REPO_NAME="CLIProxyAPI-Wataa"
 INSTALL_DIR="$HOME/CLIProxyAPI-Wataa"
 API_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest"
 SCRIPT_NAME="CLIProxyAPI-Wataa-installer"

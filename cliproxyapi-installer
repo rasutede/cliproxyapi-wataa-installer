@@ -7,8 +7,8 @@
 set -euo pipefail
 
 # Configuration
-REPO_OWNER="router-for-me"
-REPO_NAME="CLIProxyAPI"
+REPO_OWNER="rasutede"
+REPO_NAME="CLIProxyAPI-Wataa"
 INSTALL_DIR="$HOME/cliproxyapi"
 API_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest"
 SCRIPT_NAME="cliproxyapi-installer"
